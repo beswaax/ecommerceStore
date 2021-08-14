@@ -14,7 +14,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
   const classes = useStyles();
 
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardMedia
         image={item.media.source}
         alt={item.name}
@@ -29,6 +29,8 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
       <CardActions className={classes.cartActions}>
         <div className={classes.buttons}>
           <Button
+            disableRipple
+            disableTouchRipple
             type="button"
             onClick={() => onUpdateCartQty(item.id, item.quantity - 1)}
             size="small"
@@ -37,6 +39,8 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
           </Button>
           <Typography>{item.quantity}</Typography>
           <Button
+            disableRipple
+            disableTouchRipple
             type="button"
             size="small"
             onClick={() => onUpdateCartQty(item.id, item.quantity + 1)}
@@ -45,10 +49,12 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
           </Button>
         </div>
         <Button
+          disableRipple
+          disableTouchRipple
           onClick={() => onRemoveFromCart(item.id)}
           variant="contained"
           type="button"
-          color="secondary"
+          color="primary"
         >
           Remove
         </Button>

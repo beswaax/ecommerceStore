@@ -4,7 +4,9 @@ export default makeStyles(() => ({
   media: {
     height: 260,
   },
+  card: { borderRadius: 0 },
   cardContent: {
+    borderRadius: 0,
     display: "flex",
     justifyContent: "space-between",
   },

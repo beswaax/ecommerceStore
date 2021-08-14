@@ -2,6 +2,8 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    borderRadius: 0,
+    boxShadow: 0,
     maxWidth: "100%",
   },
   media: {

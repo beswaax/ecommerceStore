@@ -87,7 +87,6 @@ const Checkout = ({ cart, onCaptureCheckout, error, order }) => {
         <div>
           <Typography variant="h5">
             Thank you for your purchase, {order.customer.firstname}{" "}
-            {order.customer.lastname}
           </Typography>
           <Divider className={classes.divider} />
           <Typography variant="subtitle2">
@@ -102,18 +101,25 @@ const Checkout = ({ cart, onCaptureCheckout, error, order }) => {
     ) : isFinished ? (
       <>
         <div>
-          <Typography variant="h5">
-            Thank you for your purchase
-            {order.customer.lastname}
-          </Typography>
+          <Typography variant="h5">Thank you for your purchase</Typography>
           <Divider className={classes.divider} />
-          <Typography variant="subtitle2">Order ref: 0000</Typography>
         </div>
         <br />
         <Button component={Link} to="/" variant="outlined" type="button">
           Back home
         </Button>
       </>
+    ) : isFinished ? (
+      <div>
+        <div>
+          <Typography variant="h5">Thank you for your purchase</Typography>
+          <Divider className={classes.divider} />
+          <br />
+          <Button component={Link} to="/" variant="outlined" type="button">
+            Back home
+          </Button>
+        </div>
+      </div>
     ) : (
       <div className={classes.spinner}>
         <CircularProgress />

@@ -23,10 +23,10 @@ const Product = ({ product, onAddToCart }) => {
       />
       <CardContent>
         <div className={classes.cardContent}>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h6" gutterBottom>
             {product.name}
           </Typography>
-          <Typography variant="h5">
+          <Typography variant="h6" color="textPrimary">
             {product.price.formatted_with_symbol}
           </Typography>
         </div>
@@ -38,6 +38,8 @@ const Product = ({ product, onAddToCart }) => {
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
         <IconButton
+          disableRipple
+          disableTouchRipple
           aria-label="Add to Cart"
           onClick={() => onAddToCart(product.id, 1)}
         >

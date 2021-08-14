@@ -9,23 +9,20 @@ import { loadStripe } from "@stripe/stripe-js";
 
 import Review from "./Review";
 
-//here you create a new stype object with your personal stripe key
-const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentForm = ({
   checkoutToken,
+  nextStep,
   backStep,
   shippingData,
-  onCaptureCheckout,
   timeout,
-  nextStep,
+  onCaptureCheckout,
 }) => {
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
 
-    if (!stripe || !elements) {
-      return;
-    }
+    if (!stripe || !elements) return;
 
     const cardElement = elements.getElement(CardElement);
 
@@ -35,7 +32,7 @@ const PaymentForm = ({
     });
 
     if (error) {
-      console.log(error);
+      console.log("[error]", error);
     } else {
       const orderData = {
         line_items: checkoutToken.live.line_items,
@@ -45,7 +42,7 @@ const PaymentForm = ({
           email: shippingData.email,
         },
         shipping: {
-          name: "Primary",
+          name: "International",
           street: shippingData.address1,
           town_city: shippingData.city,
           county_state: shippingData.shippingSubdivision,
@@ -60,6 +57,7 @@ const PaymentForm = ({
           },
         },
       };
+
       onCaptureCheckout(checkoutToken.id, orderData);
 
       timeout();
@@ -73,22 +71,21 @@ const PaymentForm = ({
       <Review checkoutToken={checkoutToken} />
       <Divider />
       <Typography variant="h6" gutterBottom style={{ margin: "20px 0" }}>
-        Payment Method
+        Payment method
       </Typography>
       <Elements stripe={stripePromise}>
         <ElementsConsumer>
           {({ elements, stripe }) => (
             <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
               <CardElement />
-              <br />
-              <br />
+              <br /> <br />
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <Button onClick={backStep} variant="outlin ed">
+                <Button variant="outlined" onClick={backStep}>
                   Back
                 </Button>
                 <Button
-                  variant="contained"
                   type="submit"
+                  variant="contained"
                   disabled={!stripe}
                   color="primary"
                 >
