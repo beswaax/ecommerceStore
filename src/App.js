@@ -6,12 +6,6 @@ import theme from "../src/theme/index";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Footer from "../src/components/Footer/Footer";
-import Header from "../src/components/Header";
-import Content from "../src/components/Content";
-import Features from "../src/components/Features";
-import Contact from "../src/components/Contact";
-
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
@@ -90,14 +84,9 @@ const App = () => {
 
             <Switch>
               <Route exact path="/">
-                {/* <Header /> */}
-                {/* <Content /> */}
-
                 <Box py={8}>
                   <Products products={products} onAddToCart={handleAddToCart} />
                 </Box>
-                {/* <Features />
-                <Contact /> */}
               </Route>
               <Route exact path="/cart">
                 <Cart
@@ -116,8 +105,6 @@ const App = () => {
                 />
               </Route>
             </Switch>
-
-            {/* <Footer /> */}
           </div>
         </Router>
       </ThemeProvider>
