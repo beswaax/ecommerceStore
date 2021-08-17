@@ -101,6 +101,7 @@ const App = () => {
                   order={order}
                   onCaptureCheckout={handleCaptureCheckout}
                   error={errorMessage}
+                  handleEmptyCart={handleEmptyCart}
                   cart={cart}
                 />
               </Route>

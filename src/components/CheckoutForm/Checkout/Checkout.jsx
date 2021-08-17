@@ -20,7 +20,13 @@ import { Link, useHistory } from "react-router-dom";
 
 const steps = ["Shipping address", "Payment details"];
 
-const Checkout = ({ cart, onCaptureCheckout, error, order }) => {
+const Checkout = ({
+  handleEmptyCart,
+  cart,
+  onCaptureCheckout,
+  error,
+  order,
+}) => {
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [shippingData, setShippingData] = useState([]);
@@ -34,12 +40,9 @@ const Checkout = ({ cart, onCaptureCheckout, error, order }) => {
         const token = await commerce.checkout.generateToken(cart.id, {
           type: "cart",
         });
-
-        console.log(token);
-
         setCheckoutToken(token);
       } catch (error) {
-        history.push("/");
+        history.pushState("/");
       }
     };
 
@@ -94,7 +97,13 @@ const Checkout = ({ cart, onCaptureCheckout, error, order }) => {
           </Typography>
         </div>
         <br />
-        <Button component={Link} to="/" variant="outlined" type="button">
+        <Button
+          component={Link}
+          to="/"
+          variant="outlined"
+          type="button"
+          onClick={handleEmptyCart}
+        >
           Back home
         </Button>
       </>
@@ -105,7 +114,13 @@ const Checkout = ({ cart, onCaptureCheckout, error, order }) => {
           <Divider className={classes.divider} />
         </div>
         <br />
-        <Button component={Link} to="/" variant="outlined" type="button">
+        <Button
+          onClick={handleEmptyCart}
+          component={Link}
+          to="/"
+          variant="outlined"
+          type="button"
+        >
           Back home
         </Button>
       </>
